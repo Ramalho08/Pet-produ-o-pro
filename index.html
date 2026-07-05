@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PET Produção PRO</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <span>♻️</span>
+      <div>
+        <h1>PET Produção PRO</h1>
+        <small>Gestão de produção</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#dashboard" class="active">Dashboard</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#vendas">Vendas</a>
+      <a href="#estoque">Estoque</a>
+      <a href="#relatorio">Relatório</a>
+    </nav>
+  </aside>
+
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h2>Controle de peças, custos e lucro</h2>
+        <p>Cadastre produtos, registre vendas e acompanhe os resultados.</p>
+      </div>
+      <button onclick="limparTudo()" class="danger">Limpar dados</button>
+    </header>
+
+    <section id="dashboard" class="cards">
+      <div class="card">
+        <p>Faturamento</p>
+        <h3 id="totalVendido">R$ 0,00</h3>
+      </div>
+      <div class="card">
+        <p>Custo total</p>
+        <h3 id="totalCusto">R$ 0,00</h3>
+      </div>
+      <div class="card destaque">
+        <p>Lucro</p>
+        <h3 id="totalLucro">R$ 0,00</h3>
+      </div>
+      <div class="card">
+        <p>Peças vendidas</p>
+        <h3 id="totalPecas">0</h3>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div id="produtos" class="panel">
+        <h2>Cadastrar produto</h2>
+        <label>Nome da peça</label>
+        <input id="nomeProduto" placeholder="Ex: Parachoque" />
+
+        <label>Resina usada (kg)</label>
+        <input id="resina" type="number" placeholder="Ex: 3" />
+
+        <label>Barro usado (kg)</label>
+        <input id="barro" type="number" placeholder="Ex: 1" />
+
+        <label>Custo de acabamento (R$)</label>
+        <input id="acabamento" type="number" placeholder="Ex: 100" />
+
+        <label>Preço de venda (R$)</label>
+        <input id="precoVenda" type="number" placeholder="Ex: 500" />
+
+        <button onclick="adicionarProduto()">Adicionar produto</button>
+      </div>
+
+      <div id="vendas" class="panel">
+        <h2>Registrar venda</h2>
+        <label>Produto</label>
+        <select id="produtoVenda"></select>
+
+        <label>Cliente</label>
+        <input id="cliente" placeholder="Nome do cliente" />
+
+        <label>Quantidade</label>
+        <input id="quantidade" type="number" value="1" />
+
+        <button onclick="registrarVenda()">Registrar venda</button>
+
+        <div class="hint" id="sugestaoPreco">Cadastre um produto para receber sugestão de preço.</div>
+      </div>
+    </section>
+
+    <section id="estoque" class="panel full">
+      <h2>Estoque de materiais</h2>
+      <div class="estoque-grid">
+        <div>
+          <label>Resina em estoque (kg)</label>
+          <input id="estoqueResina" type="number" value="50" />
+        </div>
+        <div>
+          <label>Barro em estoque (kg)</label>
+          <input id="estoqueBarro" type="number" value="30" />
+        </div>
+        <button onclick="salvarEstoque()">Salvar estoque</button>
+      </div>
+      <p id="alertaEstoque" class="alerta"></p>
+    </section>
+
+    <section id="relatorio" class="panel full">
+      <h2>Produtos cadastrados</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Peça</th>
+              <th>Custo</th>
+              <th>Venda</th>
+              <th>Lucro un.</th>
+              <th>Margem</th>
+            </tr>
+          </thead>
+          <tbody id="listaProdutos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel full">
+      <h2>Histórico de vendas</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Cliente</th>
+              <th>Produto</th>
+              <th>Qtd.</th>
+              <th>Total</th>
+              <th>Lucro</th>
+            </tr>
+          </thead>
+          <tbody id="listaVendas"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
